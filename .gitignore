@@ -1,7 +1,6 @@
 /_pycache_/
-/import-files/
+/import_files/
 *.py 
 !database.py
 !db.py
 !inp.py
-g
