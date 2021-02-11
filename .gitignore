@@ -1,5 +1,7 @@
-/_pycache_/
-/import_files/
+C:\Users\Nahms\Documents\Ryan Programming\database\__pycache__
+C:\Users\Nahms\Documents\Ryan Programming\database\DBackup
+C:\Users\Nahms\Documents\Ryan Programming\database\old_import
+C:\Users\Nahms\Documents\Ryan Programming\database\import_files
 *.py 
 !database.py
 !db.py
