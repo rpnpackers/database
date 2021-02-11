@@ -3,7 +3,6 @@
 # Get input for column headers
 # input the number of columns
 def column_name(num_of_titles, in_csv):
-    import csv 
     headers = []
     for i in range(num_of_titles):
         t = input(f"Title {i + 1}:")
@@ -17,20 +16,22 @@ def check_similar(name_id, database):
     # Establishes Connection
     conn = sqlite3.connect(database)
     c = conn.cursor()
-
     # Select with same id
-    c.execute("SELECT name, id FROM projects WHERE projects.id == ?;", [name_id[1]])
-    temp = c.fetchall()
+    c.execute("SELECT name, id, tid FROM projects WHERE projects.id == ?;", [name_id[0]])
+    temp = c.fetchone()
     # Exit if the project exists, and return it's info 
     if len(temp) != 0:
+        # Check to ensure they aren't exact, if so return none.
         return temp
     # If the id isn't in the database, then check the first and last word of name
     else:
         temp = name_id[1].split()
-        # c.execute(f"SELECT name, id FROM projects WHERE name LIKE '{temp[0]}%{temp[len(temp) - 1]}';")
-        # x = c.fetchall()
-        print(temp)
-        print(len(temp))
-        x = {4, 4}
+        if len(temp) > 1:
+            c.execute(f"""SELECT name, id, tid FROM projects WHERE name 
+                        LIKE '{temp[0]}%{temp[len(temp) - 1]}';""")
+        else:
+            c.execute(f"""SELECT name, id, tid FROM projects WHERE name
+                        LIKE '{temp[0]}';""")
+        x = c.fetchone()
         if len(x) != 0:
             return x

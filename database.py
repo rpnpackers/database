@@ -57,6 +57,7 @@ def jobs():
     names = csv.DictReader(t)
     # Get names of the column titles
     print("Input the title names from the csv file.\nBe sure to omit all spaces")
+    print ("Use ID column then Name column.")
     titles = db.column_name(2, names)
     # Iterate through each row of the system. 
     for row in names:
@@ -67,14 +68,24 @@ def jobs():
         # prompt user to change 
         if exist != None:
             print("Are these two projects the same?")
-            print(f"Database:\n{exist}")
-            print(f"CSV:\n{row[titles[0]]} {row[titles[1]]}")
+            print(f"Database: {exist}")
+            print(f"CSV:         {row[titles[1]]} {row[titles[0]]}")
 
             # Ask user to verify if they're the same project
+            options = ["y", "n"]
+            print("Yes for the same, and No for different")
+            if inp.user_choice(options) == "y":
+                # if yes, offer to modify entry
+                if inp.user_choice(["d", "c"], ["Database", "Csv"]) == "d":
+                    continue
+                else:
+                    # Change Name in Database usint tid exists[0][2]
             
+            # should put a newline thing here or something 
 
-        
-        
+
+
+
 # Method for importing monthly data
 def monthly():
     print("Added monthly data!!!\n\n")
