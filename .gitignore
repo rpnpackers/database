@@ -1,15 +1,5 @@
-import_files/Enphase Reports.xlsx - systems_monthly_energy_producti.csv
-import_files/Monthly Summary - Simplified- 11-20.xlsx - sites.csv
-import_files/Monthly Summary - Simplified.xlsx - sites12-2020.csv
-import_files/systems_monthly_energy_production_2020-02.csv
-import_files/systems_monthly_energy_production_2020-03.csv
-import_files/systems_monthly_energy_production_2020-04.csv
-import_files/systems_monthly_energy_production_2020-05.csv
-import_files/systems_monthly_energy_production_2020-06.csv
-import_files/systems_monthly_energy_production_2020-07.csv
-import_files/systems_monthly_energy_production_2020-08.csv
-import_files/systems_monthly_energy_production_2020-09.csv
-import_files/systems_monthly_energy_production_2020-10.csv
-import_files/systems_monthly_energy_production_2020-11.csv
-import_files/systems_monthly_energy_production_2020-12.csv
-import_files/test.csv
+import-files/
+*.py
+!database.py
+!db.py
+!inp.py
