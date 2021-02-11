@@ -54,6 +54,7 @@ def jobs():
 
     
     # Read the csv into a dictionary
+    # Extra Text to see what happens
     names = csv.DictReader(t)
     # Get names of the column titles
     print("Input the title names from the csv file.\nBe sure to omit all spaces")
