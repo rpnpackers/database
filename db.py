@@ -26,9 +26,11 @@ def check_similar(name_id, database):
         return temp
     # If the id isn't in the database, then check the first and last word of name
     else:
-        temp = name_id[0].split()
-        c.execute(f"""SELECT name, id FROM projects WHERE 
-                    name LIKE '{temp[0]}%{temp[len(temp) - 1]}';""")
-        x = c.fetchall()
+        temp = name_id[1].split()
+        # c.execute(f"SELECT name, id FROM projects WHERE name LIKE '{temp[0]}%{temp[len(temp) - 1]}';")
+        # x = c.fetchall()
+        print(temp)
+        print(len(temp))
+        x = {4, 4}
         if len(x) != 0:
             return x
