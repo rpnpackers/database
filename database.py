@@ -63,12 +63,12 @@ def jobs():
     for row in names:
         # Search the Database for jobs with the samvae first word or id 
         x = [row[titles[0]], row[titles[1]]]
-        exist = db.check_similar(x, a)
+        database = db.check_similar(x, a)
         
         # prompt user to change 
-        if exist != None:
+        if database != None:
             print("Are these two projects the same?")
-            print(f"Database: {exist}")
+            print(f"Database: {database}")
             print(f"CSV:         {row[titles[1]]} {row[titles[0]]}")
 
             # Ask user to verify if they're the same project
@@ -79,9 +79,17 @@ def jobs():
                 if inp.user_choice(["d", "c"], ["Database", "Csv"]) == "d":
                     continue
                 else:
-                    # Change Name in Database usint tid exists[0][2]
-            
+                    # Change Name in Database usint tid databases[0][2]
+                    c.execute("""UPDATE projects
+                                SET name = ?, id = ? WHERE tid ==?;""", (row[titles[1]], row[titles[0]], database[2]))
+            else:
+                c.execute("INSERT INTO projects (name, id) VALUES (?, ?);", (row[titles[1]], row[titles[0]]))
+                
             # should put a newline thing here or something 
+    # Save and close 
+    t.close()
+    conn.commit()
+    conn.close()
 
 
 

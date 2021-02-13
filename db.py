@@ -20,7 +20,7 @@ def check_similar(name_id, database):
     c.execute("SELECT name, id, tid FROM projects WHERE projects.id == ?;", [name_id[0]])
     temp = c.fetchone()
     # Exit if the project exists, and return it's info 
-    if len(temp) != 0:
+    if temp != None:
         # Check to ensure they aren't exact, if so return none.
         return temp
     # If the id isn't in the database, then check the first and last word of name
@@ -33,5 +33,5 @@ def check_similar(name_id, database):
             c.execute(f"""SELECT name, id, tid FROM projects WHERE name
                         LIKE '{temp[0]}';""")
         x = c.fetchone()
-        if len(x) != 0:
+        if x != None:
             return x

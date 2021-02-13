@@ -1,9 +1,16 @@
-C:\Users\Nahms\Documents\Ryan Programming\database\__pycache__
+# Excludes folders containing input files
 C:\Users\Nahms\Documents\Ryan Programming\database\DBackup
 C:\Users\Nahms\Documents\Ryan Programming\database\old_import
 C:\Users\Nahms\Documents\Ryan Programming\database\import_files
+
+# Makes sure to catch all unnecessary files
 *.csv
 *.py 
+
+# Main python programs
 !database.py
 !db.py
 !inp.py
+
+# Exlcudes db-journals formed while running python code
+*.db-journal

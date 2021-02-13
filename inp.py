@@ -29,8 +29,8 @@ def user_choice(options, text=None):
     if text == None:
          while choice not in options:
             # Gets the input
-            choice = input("Choose a function: ").lower()[0]
-         return choice
+            choice = input("Choose a function: ").lower()
+         return choice[0]
 
     if (len(options) != len(text)):
         raise IOError
@@ -39,5 +39,5 @@ def user_choice(options, text=None):
         for i in range(len(options)):
             print(f"{text[i]} = {options[i]}")
         # Gets the input
-        choice = input("Choose a function: ").lower()[0]
-    return choice
+        choice = input("Choose a function: ").lower()
+    return choice[0]
