@@ -21,15 +21,23 @@ def get_int(s, min=None, max=None):
             elif r:
                 print(f"Must be between {min} and {max} inclusive.")
 
-def user_choice(options, text):
+def user_choice(options, text=None):
     # Check for correct input
-    if len(options) != len(text):
-        raise IOError
+    # Takes as input a list of letter options, and their corresponding meanings.
     choice = None
+    # Handles where shorter output is better
+    if text == None:
+         while choice not in options:
+            # Gets the input
+            choice = input("Choose a function: ").lower()
+         return choice[0]
+
+    if (len(options) != len(text)):
+        raise IOError
     while choice not in options:
         print("Options:")
         for i in range(len(options)):
             print(f"{text[i]} = {options[i]}")
         # Gets the input
-        choice = input("Choose a function: ").lower()[0]
-    return choice
+        choice = input("Choose a function: ").lower()
+    return choice[0]

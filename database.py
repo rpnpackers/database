@@ -57,24 +57,41 @@ def jobs():
     names = csv.DictReader(t)
     # Get names of the column titles
     print("Input the title names from the csv file.\nBe sure to omit all spaces")
+    print ("Use ID column then Name column.")
     titles = db.column_name(2, names)
     # Iterate through each row of the system. 
     for row in names:
         # Search the Database for jobs with the samvae first word or id 
         x = [row[titles[0]], row[titles[1]]]
-        exist = db.check_similar(x, a)
+        database = db.check_similar(x, a)
         
         # prompt user to change 
-        if exist != None:
+        if database != None:
             print("Are these two projects the same?")
-            print(f"Database:\n{exist}")
-            print(f"CSV:\n{row[titles[0]]} {row[titles[1]]}")
+            print(f"Database: {database}")
+            print(f"CSV:         {row[titles[1]]} {row[titles[0]]}")
 
             # Ask user to verify if they're the same project
-            
+            options = ["y", "n"]
+            print("Yes for the same, and No for different")
+            if inp.user_choice(options) == "y":
+                # if yes, offer to modify entry
+                if inp.user_choice(["d", "c"], ["Database", "Csv"]) == "d":
+                    continue
+                else:
+                    # Change Name in Database usint tid databases[0][2]
+                    c.execute("""UPDATE projects
+                                SET name = ?, id = ? WHERE tid ==?;""", (row[titles[1]], row[titles[0]], database[2]))
+            else:
+                c.execute("INSERT INTO projects (name, id) VALUES (?, ?);", (row[titles[1]], row[titles[0]]))
+    # Save and close 
+    t.close()
+    conn.commit()
+    conn.close()
 
-        
-        
+
+
+
 # Method for importing monthly data
 def monthly():
     print("Added monthly data!!!\n\n")
