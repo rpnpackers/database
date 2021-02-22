@@ -94,7 +94,52 @@ def jobs():
 
 # Method for importing monthly data
 def monthly():
-    print("Added monthly data!!!\n\n")
+    # Get input from the user
+    import os
+
+    # Gets the file name from the user
+    while True:
+        a = input("Csv File Path: ")
+        try: 
+            t = open(a, 'r')
+        except IOError:
+            print("File not found, type exact path.\nExample: import_files\\file.csv")
+        else:
+            break
+
+    # Establish a connection to the database
+    while True:
+        a = input("Database File Path: ")
+        # Check that the file exists
+        if os.path.isfile(a):
+            break
+        else:
+            print("File must exist, check spelling")
+    conn = sqlite3.connect(a)
+    c = conn.cursor()
+
+    # Get Column Names
+    print("Use ID then Name")
+    titles = db.column_name(2)
+    # Specific input
+    kw = inp.user_choice([1, 0], ["kWh", "Wh"])
+    print("Input the number of the month: ")
+    num = db.user_choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+    year = input("Input the year: ")
+    
+    # Change the year into it's table equvalent
+    table = "y" + str(year)
+
+    # Opens the CSV file 
+    t = open(sys.argv[1], 'r')
+    data = csv.DictReader(t)
+
+    # Creates the Strings for the database
+    db = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+    dbm = num - 1    # Creates a variable for finding the correct month
+
+    for row in data: 
+        # check if they have similar name (tid must be different)
 
 # Method for importing data from the original file
 def original():

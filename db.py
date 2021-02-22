@@ -2,7 +2,7 @@
 
 # Get input for column headers
 # input the number of columns
-def column_name(num_of_titles, in_csv):
+def column_name(num_of_titles):
     headers = []
     for i in range(num_of_titles):
         t = input(f"Title {i + 1}:")
